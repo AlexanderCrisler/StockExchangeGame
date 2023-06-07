@@ -14,6 +14,7 @@ export const CardVisualizer = props => {
   let cards = props.cards;
   let result = [];
 
+  console.log("Cards: ", cards)
   if (!Array.isArray(cards)) {
     return (
       <>

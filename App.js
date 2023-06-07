@@ -1,4 +1,4 @@
-import React, { useState, useMemo, memo } from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Button, Modal, StyleSheet, Text, View } from 'react-native';
 
@@ -94,22 +94,18 @@ const Time = () => {
 
 const Table = (props) => {
   let playerList = props.playerList;
-  let isActive = props.isActive;
-  curPlayerNum = 0;
+  let activePlayer = props.activePlayer;
 
   getPlayers = () => { return playerList; }
-  getCurPlayer = () => { return playerList[curPlayerNum]; }
-  getCurPlayerNum = () => { return curPlayerNum; }
 
   // redeal cards
   // reorder players by one to right
 
   console.log("Player List: ", playerList);
-  console.log("Current Player: ", getCurPlayer())
 
   return (
     <View backgroundColor='red'>
-      <PlayerVisualizer player={getCurPlayer()} />
+      <PlayerVisualizer player={playerList[activePlayer]} />
     </ View>
   );
 }
@@ -121,30 +117,27 @@ const GameController = () => {
   // component and moving player draws into the higher order object will prevent rerendering the data.
   console.log("New Game Controller");
   const [endGameAlert, setEndGameAlert] = useState(false);
+  const [activePlayer, setActivePlayer] = useState(0);
 
   let deck = new Deck();
-  let time = new Time();
   let playerList = [];
 
   let numOfPlayers = 2;
-  let isActive = 0;
 
   for (let i = 0; i < numOfPlayers; i++) {
     playerList.push(new Player(i, deck.draw(10)));
   }
 
   nextPlayer = () => { 
-    //console.log("current player number: ", this.table.getCurPlayerNum())
-    //console.log("current time: ", this.time.getTime())
 
-    if (table.getCurPlayerNum() >= numOfPlayers - 1) {
+    if (activePlayer >= numOfPlayers - 1) {
       // TODO: handle different order of players each round
-      table.setCurPlayerNum(0);
-      (time.getTime() === "Morning") ? time.setTime("Afternoon") : time.nextDay();
+      setActivePlayer(0);
+      //(time.getTime() === "Morning") ? time.setTime("Afternoon") : time.nextDay();
       return;
     }
     
-    table.setCurPlayerNum(curPlayerNum + 1);
+    setActivePlayer(activePlayer + 1);
   }
 
   endGame = () => {
@@ -156,8 +149,8 @@ const GameController = () => {
   return (
     <View>
       <Time time={time} />
-      <Table playerList={playerList} isActive={isActive} />
-      <Button onPress={() => {game.nextPlayer()}} title="Next Player" />
+      <Table playerList={playerList} activePlayer={activePlayer} />
+      <Button onPress={() => {nextPlayer()}} title="Next Player" />
       <View>
         <Modal
           animationType="slide"
