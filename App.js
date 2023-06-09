@@ -66,11 +66,8 @@ class Deck {
 
 const Time = () => {
   maxDays = 7;
-  [day, setDay] = useState(1);
-  [time, setTime] = useState("Morning");
-
-  getDay = () => { return day; }
-  getTime = () => { return time; }
+  const [day, setDay] = useState(1);
+  const [time, setTime] = useState("Morning");
 
   nextDay = () => {
     // Check end game
@@ -86,8 +83,8 @@ const Time = () => {
 
   return (
       <View backgroundColor='yellow'>
-        <Text>Day: {getDay()}</Text>
-        <Text>Time: {getTime()}</Text>
+        <Text>Day: {day}</Text>
+        <Text>Time: {time}</Text>
       </View>
   );
 }
@@ -110,23 +107,31 @@ const Table = (props) => {
   );
 }
 
+const createPlayers = (numOfPlayers, deck) => {
+  let playerList = [];
+
+  for (let i = 0; i < numOfPlayers; i++) {
+    playerList.push(new Player(i, deck.draw(10)));
+  }
+
+  return playerList;
+}
+
 const GameController = () => {
   // TODO: Reorganize game controller under a parent object for holding non changing variables.
   // Order matters and rerendering this object rerenders all player draws and random cards. Cards
   // are currently in the App component to prevent their rerender. Moving them down into a lower order
   // component and moving player draws into the higher order object will prevent rerendering the data.
   console.log("New Game Controller");
+  let numOfPlayers = 2;
+  let deck = new Deck();
+
   const [endGameAlert, setEndGameAlert] = useState(false);
+  const [playerList, setPlayerList] = useState(createPlayers(numOfPlayers, deck));
   const [activePlayer, setActivePlayer] = useState(0);
 
-  let deck = new Deck();
-  let playerList = [];
+  console.log(playerList);
 
-  let numOfPlayers = 2;
-
-  for (let i = 0; i < numOfPlayers; i++) {
-    playerList.push(new Player(i, deck.draw(10)));
-  }
 
   nextPlayer = () => { 
 
@@ -148,7 +153,6 @@ const GameController = () => {
   
   return (
     <View>
-      <Time time={time} />
       <Table playerList={playerList} activePlayer={activePlayer} />
       <Button onPress={() => {nextPlayer()}} title="Next Player" />
       <View>

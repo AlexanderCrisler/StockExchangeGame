@@ -18,6 +18,7 @@ export default class Player {
 
 export const PlayerVisualizer = props => {
   let player = props.player;
+  let isActive = props.isActive;
   return (
     <View>
       <Text>Player: {player.standing}</Text>
