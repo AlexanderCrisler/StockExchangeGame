@@ -4,6 +4,7 @@ import { Button, Modal, StyleSheet, Text, View } from 'react-native';
 
 import Player, { PlayerVisualizer } from './components/player.js'
 import Card from './components/card.js'
+import Gums from './components/gums.js'
 
 class Deck {
   constructor() {
@@ -78,7 +79,7 @@ const Time = () => {
 
     setTime("Morning");
     setDay(day + 1);
-    
+
   }
 
   return (
@@ -133,7 +134,7 @@ const GameController = () => {
   console.log(playerList);
 
 
-  nextPlayer = () => { 
+  nextPlayer = () => {
 
     if (activePlayer >= numOfPlayers - 1) {
       // TODO: handle different order of players each round
@@ -141,7 +142,7 @@ const GameController = () => {
       //(time.getTime() === "Morning") ? time.setTime("Afternoon") : time.nextDay();
       return;
     }
-    
+
     setActivePlayer(activePlayer + 1);
   }
 
@@ -150,7 +151,7 @@ const GameController = () => {
     // declare winner
     // reset game or go to homepage
   }
-  
+
   return (
     <View>
       <Table playerList={playerList} activePlayer={activePlayer} />
@@ -185,6 +186,7 @@ const App = () => {
     <View style={styles.container}>
       <GameController />
       <StatusBar style="auto" />
+      <Gums />
     </View>
   );
 }
