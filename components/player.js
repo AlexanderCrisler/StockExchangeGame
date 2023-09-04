@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 import Card, { CardVisualizer } from './card.js'
 import Teeth from './teeth.js'
@@ -35,9 +35,15 @@ export default function Player(props) {
   name = props.name;
   color = props.color;
   return (
-    <>
+    <View style={styles.root}>
       <Teeth />
       <Gums number={number} name={name} color={color} />
-    </>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  root: {
+    paddingTop: 3,
+  },
+});

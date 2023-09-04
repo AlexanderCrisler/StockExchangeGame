@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     maxHeight: 65,
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
   },
   tooth: {
     width: 60,

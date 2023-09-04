@@ -13,14 +13,14 @@ function Gums(props) {
   );
 }
 
-const styles = (props?: any) => StyleSheet.create({
+const styles = (color) => StyleSheet.create({
   root: {
     width: 375,
     height: 32,
     padding: 5,
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: {color},
+    backgroundColor: color,
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
   },
