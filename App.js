@@ -4,7 +4,9 @@ import { Button, Modal, StyleSheet, Text, View } from 'react-native';
 
 import Player, { PlayerVisualizer } from './components/player.js'
 import Card from './components/card.js'
-import Gums from './components/gums.js'
+import TopHud from './components/topHud.js'
+import Companies from './components/companies.js'
+import BottomHud from './components/bottomHud.js'
 
 class Deck {
   constructor() {
@@ -182,11 +184,19 @@ const GameController = () => {
 }
 
 const App = () => {
+      //<GameController />
+      //<StatusBar style="auto" />
   return (
     <View style={styles.container}>
-      <GameController />
-      <StatusBar style="auto" />
-      <Gums />
+      <TopHud />
+      <Companies companies={['AAPL', 'CSCO', 'TWTR', 'UBER', 'META', 'TSLA']}/>
+      <Player number={1} name={'Alex'} color={'#F0FF92'} />
+      <Player number={2} name={'Prachi'} color={'#FFDEB4'}/>
+      <Player number={3} name={'Rushabh'} color={'#CAB8FF'}/>
+      <Player number={4} name={'Hannah'} color={'#FFC0ED'}/>
+      <Player number={5} name={'Magan'} color={'#B7DFFF'}/>
+      <Player number={6} name={'You'} color={'#F69E7B'}/>
+      <BottomHud />
     </View>
   );
 }
@@ -194,9 +204,9 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#125C13',
     alignItems: 'center',
-    justifyContent: 'center',
+    //justifyContent: 'center',
   },
   modalView: {
     margin: 20,
