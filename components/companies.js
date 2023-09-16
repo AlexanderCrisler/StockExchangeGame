@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     height: 30,
     maxHeight: 30,
   },
-
   text: {
     color: 'white',
   }
