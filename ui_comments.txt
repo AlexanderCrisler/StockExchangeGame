@@ -1,0 +1,6 @@
+- Font files (SF Pro Text)
+- Relative placements instead of absolutes
+- rectangles reporting as svgs after export
+- top and bottom bars taking up too much space on larger devices
+- Templates inside components: player action not shown in component definition
+- Cards page components

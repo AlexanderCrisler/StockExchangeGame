@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, Modal, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, Modal, StyleSheet, Text, View } from 'react-native';
 
 import Player, { PlayerVisualizer } from './components/player.js'
 import Card from './components/card.js'
